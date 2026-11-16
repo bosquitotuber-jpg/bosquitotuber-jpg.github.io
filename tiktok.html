@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JARVIS · Conectando TikTok</title>
+<style>
+  body { margin:0; background:#02070d; color:#d7ecff; font:16px/1.6 "Segoe UI", Bahnschrift, system-ui, sans-serif; }
+  main { max-width:560px; margin:0 auto; padding:64px 16px; text-align:center; }
+  h1 { color:#2aa8ff; letter-spacing:.1em; font-weight:600; }
+  a.boton { display:inline-block; margin-top:16px; padding:12px 20px; border:1px solid #2aa8ff; color:#2aa8ff; text-decoration:none; }
+  .tenue { color:#7f9bb3; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Conectando TikTok…</h1>
+  <p class="tenue">Te regreso a JARVIS en tu computadora.</p>
+  <a class="boton" id="volver" href="#">Si no pasa nada, pulsa aquí</a>
+</main>
+<script>
+  // TikTok regresa aquí con ?code=…&state=…; se lo pasamos a JARVIS, que corre en esta misma computadora.
+  var destino = "http://127.0.0.1:8790/api/tiktok/callback" + window.location.search;
+  document.getElementById("volver").href = destino;
+  if (window.location.search.indexOf("code=") !== -1 || window.location.search.indexOf("error") !== -1) {
+    window.location.replace(destino);
+  }
+</script>
+</body>
+</html>
